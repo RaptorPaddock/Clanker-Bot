@@ -2,6 +2,7 @@ CLANKERBOT
 ==========
 A Discord chatbot that learns from channel history and text files,
 then generates responses using a weighted Markov chain.
+Note: This code may still be buggy and is not guaranteed to work.
 
 REQUIREMENTS
 ------------
