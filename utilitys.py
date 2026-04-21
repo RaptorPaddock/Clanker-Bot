@@ -138,10 +138,13 @@ async def get_lore(bot: discord.Client) -> List[str]:
         return []
     lines: List[str] = []
     since = datetime.now(timezone.utc) - timedelta(days=CHANNEL_HISTORY_LIMIT)
+    print(f"      Fetching up to {CHANNEL_HISTORY_LIMIT} days of history from channel {CHANNEL_ID}...")
     async for msg in channel.history(limit=None, after=since, oldest_first=True):
         text = clean_message(msg.content or "")
         if not text:
             continue
         lines.append(text)
-    print(f"Fetched {len(lines)} messages from lore channel")
+        if len(lines) % 500 == 0:
+            print(f"      ...fetched {len(lines)} messages so far")
+    print(f"      Fetched {len(lines)} messages total from lore channel")
     return lines
