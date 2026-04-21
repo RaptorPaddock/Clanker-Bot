@@ -1,10 +1,14 @@
+import os
 import sqlite3
 from contextlib import contextmanager
 from typing import List, Tuple, Optional
 
 import config
 
-DB_FILE: str = config.STORAGE_LOCATION
+_BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+_STORAGE_DIR = os.path.join(_BASE_DIR, config.STORAGE_LOCATION)
+os.makedirs(_STORAGE_DIR, exist_ok=True)
+DB_FILE: str = os.path.join(_STORAGE_DIR, "clanker.db")
 
 
 @contextmanager
